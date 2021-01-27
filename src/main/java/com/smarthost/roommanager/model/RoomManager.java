@@ -51,7 +51,7 @@ public class RoomManager {
 			    .forEach(result::add);
 			*/    
 		
-		if (usePremium.size() < premium) {
+		if (usePremium.size() < premium && (useEconomy.size() + usePremium.size() < customers.size())) {
 			// premium free
 			int premiumFree = premium - usePremium.size();
 			// rest of cheap

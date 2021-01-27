@@ -32,7 +32,22 @@ class RoomManagerTest {
 		assertEquals(3, occupancy.getUsageEconomy());
 		assertEquals(738, occupancy.getPricePremium());
 		assertEquals(167, occupancy.getPriceEconomy());
-	
 	}
+	
+	@Test
+	void calculateOccupancyPremiumEmpty() {
+		List<Integer> customers = Arrays.asList( new Integer[] {23, 45, 155, 374, 22, 99, 100, 101, 115, 209} );
+		
+		int premium = 7;
+		int economy = 5;
+		manager.setCustomers(customers);
+		
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(6, occupancy.getUsagePremium());
+		assertEquals(4, occupancy.getUsageEconomy());
+		assertEquals(1054, occupancy.getPricePremium());
+		assertEquals(189, occupancy.getPriceEconomy());
+	}
+	
 
 }
