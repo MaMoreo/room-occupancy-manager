@@ -8,4 +8,6 @@ public interface RoomManagerService {
 
 	Integer[] setCustomers(Integer[] customers);
 
+	Integer[] getCustomers();
+
 }

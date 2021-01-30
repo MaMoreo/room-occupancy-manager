@@ -29,4 +29,10 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 		roomManager.setCustomers(Arrays.asList(customers));
 		return customers;
 	}
+
+	@Override
+	public Integer[] getCustomers() {
+		
+		return roomManager.getCustomers().toArray(new Integer[0]);
+	}
 }
