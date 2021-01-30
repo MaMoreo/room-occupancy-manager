@@ -6,4 +6,6 @@ public interface RoomManagerService {
 
 	Occupancy getOccupancy(String premiumRooms, String economyRooms);
 
+	Integer[] setCustomers(Integer[] customers);
+
 }

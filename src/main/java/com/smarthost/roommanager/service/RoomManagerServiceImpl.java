@@ -1,5 +1,7 @@
 package com.smarthost.roommanager.service;
 
+import java.util.Arrays;
+
 import org.springframework.stereotype.Service;
 
 import com.smarthost.roommanager.model.RoomManager;
@@ -22,4 +24,9 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 		return roomManager.calculateOccupancy(Integer.valueOf(premiumRooms), Integer.valueOf(economyRooms));
 	}
 
+	@Override
+	public Integer[] setCustomers(Integer[] customers) {
+		roomManager.setCustomers(Arrays.asList(customers));
+		return customers;
+	}
 }
