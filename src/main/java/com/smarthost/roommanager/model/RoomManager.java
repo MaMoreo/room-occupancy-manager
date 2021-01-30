@@ -1,5 +1,6 @@
 package com.smarthost.roommanager.model;
 
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,6 +16,11 @@ import lombok.NoArgsConstructor;
 public class RoomManager {
 
 	private List<Integer> customers;
+	
+	public RoomManager() {
+		super();
+		customers = Arrays.asList( new Integer[0]  );
+	}
 
 	@Data
 	@AllArgsConstructor
@@ -96,9 +102,5 @@ public class RoomManager {
 		occupancy.setPriceEconomy(priceEconomy);
 
 		return occupancy;
-	}
-
-	public void addCustomers(List<Integer> customers) {
-		this.customers = customers;
 	}
 }
