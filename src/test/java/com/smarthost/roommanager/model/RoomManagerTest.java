@@ -190,7 +190,7 @@ class RoomManagerTest {
 	}
 	
 	@Test
-	void calculateOccupancyPremiumEmpty() {
+	void calculateOccupancyPremiumOneEmptyRoom() {
 		List<Integer> customers = Arrays.asList( new Integer[] {23, 45, 155, 374, 22, 99, 100, 101, 115, 209} );
 		
 		int premium = 7;
@@ -233,4 +233,28 @@ class RoomManagerTest {
 		assertEquals(1153, occupancy.getPricePremium());
 		assertEquals(45, occupancy.getPriceEconomy());
 	}
+	
+	@Test
+	void calculateInvalidPrices() {
+		List<Integer> customers = Arrays.asList( new Integer[] {-1,
+				  -2,
+				  0,
+				  15,
+				  25,
+				  220,
+				  15,
+				  15,
+				  -1} );
+		
+		int premium = 2;
+		int economy = 2;
+		manager.setCustomers(customers);
+		
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(2, occupancy.getUsagePremium());
+		assertEquals(2, occupancy.getUsageEconomy());
+		assertEquals(245, occupancy.getPricePremium());
+		assertEquals(30, occupancy.getPriceEconomy());
+	}
+	 
 }

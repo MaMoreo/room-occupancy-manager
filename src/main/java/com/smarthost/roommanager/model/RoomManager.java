@@ -50,6 +50,7 @@ public class RoomManager {
 
 		List<Integer> allEconomyCustomers = customers.stream() //
 				.filter(p -> p < 100) //
+				.filter(p -> p > 0)
 				.collect(Collectors.toList());
 
 		List<Integer> bookedEconomyCustomersInPremium = calculateOverbookingEconomyRoooms( //
@@ -58,6 +59,7 @@ public class RoomManager {
 
 		List<Integer> bookedEconomyCustomers = customers.stream() //
 				.filter(p -> p < 100) //
+				.filter(p -> p > 0)
 				.filter(x -> !bookedEconomyCustomersInPremium.contains(x))//
 				.sorted(Comparator.reverseOrder())//
 				.limit(economyRooms)//
