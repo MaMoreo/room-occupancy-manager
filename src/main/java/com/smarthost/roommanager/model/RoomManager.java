@@ -4,10 +4,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.stereotype.Component;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Component
 @Data
 public class RoomManager {
 
@@ -16,7 +19,7 @@ public class RoomManager {
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-	class Occupancy {
+	public class Occupancy {
 
 		private int usagePremium;
 		private int usageEconomy;
