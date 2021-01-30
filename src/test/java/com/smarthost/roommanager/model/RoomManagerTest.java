@@ -128,6 +128,51 @@ class RoomManagerTest {
 		assertEquals(10, occupancy.getPriceEconomy());
 	}
 	
+	@Test
+	void calculateOccupancNoPremiumCustomers() {
+		List<Integer> customers = Arrays.asList( new Integer[] { 30, 20, 10} );
+		
+		int premium = 3;
+		int economy = 3;
+		manager.setCustomers(customers);
+		
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(0, occupancy.getUsagePremium());
+		assertEquals(economy, occupancy.getUsageEconomy());
+		assertEquals(0, occupancy.getPricePremium());
+		assertEquals(60, occupancy.getPriceEconomy());
+	}
+	
+	@Test
+	void calculateOccupancNoEconomymCustomers() {
+		List<Integer> customers = Arrays.asList( new Integer[] {300, 200, 100} );
+		
+		int premium = 3;
+		int economy = 3;
+		manager.setCustomers(customers);
+		
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(premium, occupancy.getUsagePremium());
+		assertEquals(0, occupancy.getUsageEconomy());
+		assertEquals(600, occupancy.getPricePremium());
+		assertEquals(0, occupancy.getPriceEconomy());
+	}
+	
+	@Test
+	void calculateOccupancNoCustomers() {
+		List<Integer> customers = Arrays.asList( new Integer[0]  );
+		
+		int premium = 3;
+		int economy = 3;
+		manager.setCustomers(customers);
+		
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(0, occupancy.getUsagePremium());
+		assertEquals(0, occupancy.getUsageEconomy());
+		assertEquals(0, occupancy.getPricePremium());
+		assertEquals(0, occupancy.getPriceEconomy());
+	}
+	
 	
 	@Test
 	void calculateOccupancyPerfectMatch() {

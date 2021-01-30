@@ -26,7 +26,7 @@ public class RoomManager {
 
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
 
-		int premiumOccupancy = 0;
+		int premiumOccupancy;
 		int pricePremium;
 		
 		List<Integer> bookedPremiumCustomers = customers.stream()
