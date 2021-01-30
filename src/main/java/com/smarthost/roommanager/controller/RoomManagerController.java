@@ -12,46 +12,44 @@ import org.springframework.web.bind.annotation.RestController;
 import com.smarthost.roommanager.model.RoomManager;
 import com.smarthost.roommanager.service.RoomManagerService;
 
-
 @RestController
 @RequestMapping("room-manager")
 public class RoomManagerController {
-	
+
 	private final RoomManagerService roomManagerService;
-	
-	
+
 	public RoomManagerController(RoomManagerService roomManagerService) {
 		super();
 		this.roomManagerService = roomManagerService;
 	}
 
 	@GetMapping("/occupancy/{premiumRooms}/{economyRooms}")
-	public RoomManager.Occupancy getAccomodation(@PathVariable("premiumRooms") String premiumRooms,
-			@PathVariable("economyRooms") String economyRooms) {  
-		
+	public RoomManager.Occupancy getAccomodation(   //
+			@PathVariable("premiumRooms") String premiumRooms,  //
+			@PathVariable("economyRooms") String economyRooms) {
+
 		return roomManagerService.getOccupancy(premiumRooms, economyRooms);
-		
+
 	}
-	
+
 	@PostMapping("/customers")
-	public ResponseEntity<Integer[]> createCustomers(@RequestBody Integer[] customers ) {  
-		
-		  return ResponseEntity //
-			   .ok(roomManagerService.setCustomers(customers));
+	public ResponseEntity<Integer[]> createCustomers(@RequestBody Integer[] customers) {
+
+		return ResponseEntity //
+				.ok(roomManagerService.setCustomers(customers));
 	}
-	
+
 	@GetMapping("/customers")
-	public ResponseEntity<Integer[]> getCustomers( ) {  
-		
-		  return ResponseEntity //
-			   .ok(roomManagerService.getCustomers());
+	public ResponseEntity<Integer[]> getCustomers() {
+
+		return ResponseEntity //
+				.ok(roomManagerService.getCustomers());
 	}
-	
 
 	@PutMapping("/customers")
-	public ResponseEntity<Integer[]> addCustomers(@RequestBody Integer[] customers ) {  
-		
-		  return ResponseEntity //
-			   .ok(roomManagerService.addCustomers(customers));
+	public ResponseEntity<Integer[]> addCustomers(@RequestBody Integer[] customers) {
+
+		return ResponseEntity //
+				.ok(roomManagerService.addCustomers(customers));
 	}
 }
