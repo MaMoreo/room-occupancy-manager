@@ -1,6 +1,8 @@
 package com.smarthost.roommanager.service;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -26,7 +28,8 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 
 	@Override
 	public Integer[] setCustomers(Integer[] customers) {
-		roomManager.setCustomers(Arrays.asList(customers));
+		List<Integer> supportedTypes = new ArrayList<Integer>(Arrays.asList(customers));
+		roomManager.setCustomers(supportedTypes);
 		return customers;
 	}
 
@@ -34,5 +37,11 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 	public Integer[] getCustomers() {
 		
 		return roomManager.getCustomers().toArray(new Integer[0]);
+	}
+
+	@Override
+	public Integer[] addCustomers(Integer[] customers) {
+		List<Integer> allCustomers =  roomManager.addCustomers(Arrays.asList(customers));
+		return allCustomers.toArray(new Integer[0]);
 	}
 }

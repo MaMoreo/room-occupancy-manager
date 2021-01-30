@@ -10,4 +10,6 @@ public interface RoomManagerService {
 
 	Integer[] getCustomers();
 
+	Integer[] addCustomers(Integer[] customers);
+
 }

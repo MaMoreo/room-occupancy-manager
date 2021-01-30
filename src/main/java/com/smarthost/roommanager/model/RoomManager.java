@@ -1,6 +1,6 @@
 package com.smarthost.roommanager.model;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -16,10 +16,10 @@ import lombok.NoArgsConstructor;
 public class RoomManager {
 
 	private List<Integer> customers;
-	
+
 	public RoomManager() {
 		super();
-		customers = Arrays.asList( new Integer[0]  );
+		customers = new ArrayList<>();
 	}
 
 	@Data
@@ -37,9 +37,8 @@ public class RoomManager {
 
 		int premiumOccupancy;
 		int pricePremium;
-		
-		List<Integer> bookedPremiumCustomers = customers.stream()
-				.filter(p -> p >= 100) //
+
+		List<Integer> bookedPremiumCustomers = customers.stream().filter(p -> p >= 100) //
 				.sorted(Comparator.reverseOrder()) //
 				.limit(premiumRooms) //
 				.collect(Collectors.toList());
@@ -56,8 +55,7 @@ public class RoomManager {
 
 			int min = restOfPremiumRooms < overbookedEconomyUsers ? restOfPremiumRooms : overbookedEconomyUsers;
 
-			List<Integer> bookedEconomyCustomersInPremium = customers.stream()
-					.filter(p -> p < 100) //
+			List<Integer> bookedEconomyCustomersInPremium = customers.stream().filter(p -> p < 100) //
 					.sorted(Comparator.reverseOrder())//
 					.limit(min)//
 					.collect(Collectors.toList());
@@ -66,19 +64,18 @@ public class RoomManager {
 					.filter(p -> p < 100)//
 					.filter(x -> !bookedEconomyCustomersInPremium.contains(x))//
 					.sorted(Comparator.reverseOrder())//
- 					.limit(economyRooms) //
+					.limit(economyRooms) //
 					.collect(Collectors.toList());
 
 			premiumOccupancy = bookedPremiumCustomers.size() + bookedEconomyCustomersInPremium.size();
 			pricePremium = bookedPremiumCustomers.stream() //
 					.mapToInt(Integer::valueOf) //
-					.sum() // 
+					.sum() //
 					+ //
-					 bookedEconomyCustomersInPremium.stream() //
-					.mapToInt(Integer::valueOf) //
-					.sum();
-			
-			
+					bookedEconomyCustomersInPremium.stream() //
+							.mapToInt(Integer::valueOf) //
+							.sum();
+
 		} else {
 
 			bookedEconomyCustomers = customers.stream() //
@@ -87,10 +84,9 @@ public class RoomManager {
 					.limit(economyRooms)//
 					.collect(Collectors.toList());
 
-			
 			premiumOccupancy = bookedPremiumCustomers.size();
 			pricePremium = bookedPremiumCustomers.stream().mapToInt(Integer::valueOf).sum();
-			
+
 		}
 
 		int priceEconomy = bookedEconomyCustomers.stream().mapToInt(Integer::valueOf).sum();
@@ -102,5 +98,12 @@ public class RoomManager {
 		occupancy.setPriceEconomy(priceEconomy);
 
 		return occupancy;
+	}
+
+	
+	public List<Integer> addCustomers(List<Integer> customersToAdd) {
+
+		this.customers.addAll(customersToAdd);
+		return customers;
 	}
 }
