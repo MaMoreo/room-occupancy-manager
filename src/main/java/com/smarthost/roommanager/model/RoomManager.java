@@ -12,72 +12,89 @@ import lombok.NoArgsConstructor;
 public class RoomManager {
 
 	private List<Integer> customers;
-	
+
 	@Data
 	@AllArgsConstructor
 	@NoArgsConstructor
-	 class Occupancy {
-		
+	class Occupancy {
+
 		private int usagePremium;
 		private int usageEconomy;
 		private int pricePremium;
 		private int priceEconomy;
 	}
-	
-	
-	
-	
-	public Occupancy calculateOccupancy(int premium, int economy) {
+
+	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
+
+		int premiumOccupancy = 0;
+		int pricePremium;
 		
-		List<Integer> usePremium = customers
-				.stream()
-				.filter(p -> p >= 100)
-				.sorted(Comparator.reverseOrder())
-				.limit(premium)
+		List<Integer> bookedPremiumCustomers = customers.stream()
+				.filter(p -> p >= 100) //
+				.sorted(Comparator.reverseOrder()) //
+				.limit(premiumRooms) //
 				.collect(Collectors.toList());
-		
-		
-		List<Integer> useEconomy = customers
-				.stream()
-				.filter(p -> p < 100)
-				.sorted(Comparator.reverseOrder())
-				.limit(economy)
+
+		List<Integer> allEconomyCustomers = customers.stream() //
+				.filter(p -> p < 100) //
 				.collect(Collectors.toList());
-		
-		/*IntStream
-			    .iterate( premium - 1,  n -> n - 1)
-			    .takeWhile(n -> n > 0)
-			    .mapToObj(pene::get)
-			    .forEach(result::add);
-			*/    
-		
-		if (usePremium.size() < premium && (useEconomy.size() + usePremium.size() < customers.size())) {
-			// premium free
-			int premiumFree = premium - usePremium.size();
-			// rest of cheap
-			 List<Integer> restOfCheap = customers
-				.stream()
-				.filter(p -> p < 100)
-				.sorted(Comparator.reverseOrder())
-				//.limit(economy)
-				.collect(Collectors.toList());
+
+		List<Integer> bookedEconomyCustomers;
+		if (premiumRooms > bookedPremiumCustomers.size() && allEconomyCustomers.size() > economyRooms) {
+
+			int restOfPremiumRooms = premiumRooms - bookedPremiumCustomers.size();
+			int overbookedEconomyUsers = allEconomyCustomers.size() - economyRooms;
+
+			int min = restOfPremiumRooms < overbookedEconomyUsers ? restOfPremiumRooms : overbookedEconomyUsers;
+
+			List<Integer> bookedEconomyCustomersInPremium = customers.stream()
+					.filter(p -> p < 100) //
+					.sorted(Comparator.reverseOrder())//
+					.limit(min)//
+					.collect(Collectors.toList());
+
+			bookedEconomyCustomers = customers.stream() //
+					.filter(p -> p < 100)//
+					.filter(x -> !bookedEconomyCustomersInPremium.contains(x))//
+					.sorted(Comparator.reverseOrder())//
+ 					.limit(economyRooms) //
+					.collect(Collectors.toList());
+
+			premiumOccupancy = bookedPremiumCustomers.size() + bookedEconomyCustomersInPremium.size();
+			pricePremium = bookedPremiumCustomers.stream() //
+					.mapToInt(Integer::valueOf) //
+					.sum() // 
+					+ //
+					 bookedEconomyCustomersInPremium.stream() //
+					.mapToInt(Integer::valueOf) //
+					.sum();
 			
-			restOfCheap.removeIf(x -> useEconomy.contains(x));
+			
+		} else {
+
+			bookedEconomyCustomers = customers.stream() //
+					.filter(p -> p < 100) //
+					.sorted(Comparator.reverseOrder())//
+					.limit(economyRooms)//
+					.collect(Collectors.toList());
+
+			
+			premiumOccupancy = bookedPremiumCustomers.size();
+			pricePremium = bookedPremiumCustomers.stream().mapToInt(Integer::valueOf).sum();
 			
 		}
-		
-		int pricePremium = usePremium.stream().mapToInt(Integer::valueOf).sum();
-		int priceEconomy = useEconomy.stream().mapToInt(Integer::valueOf).sum();
-		
+
+		int priceEconomy = bookedEconomyCustomers.stream().mapToInt(Integer::valueOf).sum();
+
 		Occupancy occupancy = new Occupancy();
-		occupancy.setUsagePremium(usePremium.size());
-		occupancy.setUsageEconomy(useEconomy.size());
+		occupancy.setUsagePremium(premiumOccupancy);
+		occupancy.setUsageEconomy(bookedEconomyCustomers.size());
 		occupancy.setPricePremium(pricePremium);
 		occupancy.setPriceEconomy(priceEconomy);
-		
+
 		return occupancy;
 	}
-	
+
 	public void addCustomers(List<Integer> customers) {
 		this.customers = customers;
 	}
