@@ -47,6 +47,7 @@ public class RoomManagerController {
 			   .ok(roomManagerService.getCustomers());
 	}
 	
+
 	@PutMapping("/customers")
 	public ResponseEntity<Integer[]> addCustomers(@RequestBody Integer[] customers ) {  
 		
