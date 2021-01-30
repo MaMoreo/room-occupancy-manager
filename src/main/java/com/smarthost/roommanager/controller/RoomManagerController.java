@@ -19,9 +19,9 @@ public class RoomManagerController {
 		this.roomManagerService = roomManagerService;
 	}
 
-	@GetMapping("/occupancy/{instrument_identifier}")
+	@GetMapping("/occupancy/{premiumRooms}/{economyRooms}")
 	public RoomManager.Occupancy getStatisticsForInstrument(@PathVariable("premiumRooms") String premiumRooms,
-			@PathVariable("economymRooms") String economyRooms) {  
+			@PathVariable("economyRooms") String economyRooms) {  
 		
 		return roomManagerService.getOccupancy(premiumRooms, economyRooms);
 		
