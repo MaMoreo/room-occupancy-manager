@@ -38,6 +38,48 @@ public class RoomManager {
 	}
 
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
+		
+		List<Integer> allCustomers = customers.stream()//
+				.sorted(Comparator.reverseOrder()) //
+				.collect(Collectors.toList());
+		
+		List<Integer> bookedPremium = new ArrayList<>();
+		List<Integer> bookedEconomy = new ArrayList<>();
+		
+		int counter = 0;
+		for (Integer customer : allCustomers) {
+			if (customer >= 100) {
+				if (bookedPremium.size() < premiumRooms) {
+					bookedPremium.add(customer);
+					counter ++;
+				}
+				continue;
+			}
+			
+			if (bookedPremium.size() < premiumRooms && (allCustomers.size() - counter) > economyRooms){
+				bookedPremium.add(customer);
+				counter ++;
+				continue;
+			}
+			
+			if (bookedEconomy.size() < economyRooms) {
+				bookedEconomy.add(customer);
+				counter ++;
+				continue;
+			} 
+				break;
+		}		
+		return new Occupancy(bookedPremium.size(),
+						bookedEconomy.size(), 
+							bookedPremium.stream() //
+								.mapToInt(Integer::valueOf)//
+								.sum(),
+						bookedEconomy.stream() //
+								.mapToInt(Integer::valueOf)//
+								.sum());
+	}
+	
+	public Occupancy calculateOccupancyOld(int premiumRooms, int economyRooms) {
 
 		this.premiumRooms = premiumRooms;
 		this.economyRooms = economyRooms;
