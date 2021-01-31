@@ -76,7 +76,6 @@ public class RoomManager {
 		if (customer >= 100) {
 			if (bookedPremium.size() < premiumRooms) {
 				bookedPremium.add(customer);
-				
 			}
 			return true;
 		}
