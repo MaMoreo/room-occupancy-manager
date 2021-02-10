@@ -78,5 +78,6 @@ What was not so good:
 - Makes model @Component and returns inner class as a result. 
 - Business logic implementation: using `@Component` and `@Data` annotation at the same time in the `models` package
 
-
+## Commit Message Format
+Check the wiki page for Git commits messages format.
 
