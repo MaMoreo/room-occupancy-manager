@@ -23,6 +23,7 @@ public class RoomManagerController {
 		this.roomManagerService = roomManagerService;
 	}
 
+
 	@GetMapping("/occupancy/{premiumRooms}/{economyRooms}")
 	public RoomManager.Occupancy getAccomodation(   //
 			@PathVariable("premiumRooms") String premiumRooms,  //
