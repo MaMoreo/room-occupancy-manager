@@ -29,7 +29,6 @@ public class RoomManagerController {
 			@PathVariable("economyRooms") String economyRooms) {
 
 		return roomManagerService.getOccupancy(premiumRooms, economyRooms);
-
 	}
 
 	@PostMapping("/customers")
