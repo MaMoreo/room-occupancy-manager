@@ -1,0 +1,25 @@
+PACKAGE AND RUN THE PROJECT.
+(THIS CREATES THE JAR)
+
+$ ./mvnw package && java -jar target/room-manager-0.0.1-SNAPSHOT.jar
+
+BUILD IMAGE WITH DOCKER
+
+$ docker build -t room-manager .
+
+SEE THE NEW IMAGE
+$ docker images 
+
+
+RUN THE APPLICATION (SILENTLY)
+$ docker run -p 8080:8080 room-manager
+
+STOP THE APPLICATION
+$ docker stop [CONTAINER_ID]
+
+SEE LOGS
+$ docker logs -f [CONTAINER_ID]
+
+
+
+
