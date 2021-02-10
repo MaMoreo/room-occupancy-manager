@@ -53,3 +53,31 @@ From there the Room-Manager-Controller is available.
 * Dockerize the App
 * Validation of the input: **We rely on valid input from the user**.
 
+
+## FEEDBACK: 
+
+What was good:
+- Minimal README
+- A brief explanation about features / tech-stack and future work in README.
+- Used GitHub issues 
+- TDD
+- Circle CI
+- Lombok
+- Swagger
+- Clean project structure
+
+What was not so good:
+- Long solution time (~10 hours)
+- A little bit messy git branch management.
+- Git commits messages not imperative
+- Did not use java 11 features
+- Redundant object creations.
+- Rest API design: /occupancy/{premiumRooms}/{economyRooms}
+- Used integer for money
+- Inconsistent code style
+- Makes model @Component and returns inner class as a result. 
+- Business logic implementation: using `@Component` and `@Data` annotation at the same time in the `models` package
+
+## Commit Message Format
+Check the wiki page for Git commits messages format.
+
