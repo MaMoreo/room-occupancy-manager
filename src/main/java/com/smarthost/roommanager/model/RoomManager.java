@@ -15,13 +15,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class RoomManager {
 
-	private List<Integer> customers;
+	private List<Double> customers;
 	private int premiumRooms;
 	private int economyRooms;
 	private Occupancy occupancy;
-	private List<Integer> allCustomers;
-	private List<Integer> bookedPremium;
-	private List<Integer> bookedEconomy;
+	private List<Double> allCustomers;
+	private List<Double> bookedPremium;
+	private List<Double> bookedEconomy;
 
 	public RoomManager() {
 		super();
@@ -36,8 +36,8 @@ public class RoomManager {
 
 		private int usagePremium;
 		private int usageEconomy;
-		private int pricePremium;
-		private int priceEconomy;
+		private double pricePremium;
+		private double priceEconomy;
 	}
 
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
@@ -53,7 +53,7 @@ public class RoomManager {
 		bookedEconomy = new ArrayList<>();
 
 		int counter = 0;
-		for (Integer customer : allCustomers) {
+		for (Double customer : allCustomers) {
 
 			if ( !bookPremium(customer) && !bookEconomy(customer, counter)) {
 					break;
@@ -64,15 +64,15 @@ public class RoomManager {
 		return new Occupancy(bookedPremium.size(), //
 				bookedEconomy.size(),  //
 				bookedPremium.stream() //
-					.mapToInt(Integer::valueOf)//
+					.mapToDouble(Double::valueOf)//
 					.sum(),
 				bookedEconomy.stream() //
-					.mapToInt(Integer::valueOf)//
+					.mapToDouble(Double::valueOf)//
 					.sum());
 
 	}
 
-	private boolean bookPremium(int customer) {
+	private boolean bookPremium(double customer) {
 		if (customer >= 100) {
 			if (bookedPremium.size() < premiumRooms) {
 				bookedPremium.add(customer);
@@ -82,7 +82,7 @@ public class RoomManager {
 		return false;
 	}
 
-	private boolean bookEconomy(int customer, int counter) {
+	private boolean bookEconomy(double customer, int counter) {
 
 		if (bookedPremium.size() < premiumRooms && (allCustomers.size() - counter) > economyRooms) {
 			bookedPremium.add(customer);
@@ -97,7 +97,7 @@ public class RoomManager {
 		return false;
 	}
 
-	public List<Integer> addCustomers(List<Integer> customersToAdd) {
+	public List<Double> addCustomers(List<Double> customersToAdd) {
 
 		this.customers.addAll(customersToAdd);
 		return customers;

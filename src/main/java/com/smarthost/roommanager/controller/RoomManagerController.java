@@ -33,21 +33,21 @@ public class RoomManagerController {
 	}
 
 	@PostMapping("/customers")
-	public ResponseEntity<Integer[]> createCustomers(@RequestBody Integer[] customers) {
+	public ResponseEntity<Double[]> createCustomers(@RequestBody Double[] customers) {
 
 		return ResponseEntity //
 				.ok(roomManagerService.setCustomers(customers));
 	}
 
 	@GetMapping("/customers")
-	public ResponseEntity<Integer[]> getCustomers() {
+	public ResponseEntity<Double[]> getCustomers() {
 
 		return ResponseEntity //
 				.ok(roomManagerService.getCustomers());
 	}
 
 	@PutMapping("/customers")
-	public ResponseEntity<Integer[]> addCustomers(@RequestBody Integer[] customers) {
+	public ResponseEntity<Double[]> addCustomers(@RequestBody Double[] customers) {
 
 		return ResponseEntity //
 				.ok(roomManagerService.addCustomers(customers));

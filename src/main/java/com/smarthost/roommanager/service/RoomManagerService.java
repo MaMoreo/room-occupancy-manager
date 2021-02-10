@@ -6,10 +6,10 @@ public interface RoomManagerService {
 
 	Occupancy getOccupancy(String premiumRooms, String economyRooms);
 
-	Integer[] setCustomers(Integer[] customers);
+	Double[] setCustomers(Double[] customers);
 
-	Integer[] getCustomers();
+	Double[] getCustomers();
 
-	Integer[] addCustomers(Integer[] customers);
+	Double[] addCustomers(Double[] customers);
 
 }

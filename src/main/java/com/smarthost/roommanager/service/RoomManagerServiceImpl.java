@@ -27,21 +27,21 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 	}
 
 	@Override
-	public Integer[] setCustomers(Integer[] customers) {
-		List<Integer> supportedTypes = new ArrayList<Integer>(Arrays.asList(customers));
+	public Double[] setCustomers(Double[] customers) {
+		List<Double> supportedTypes = new ArrayList<>(Arrays.asList(customers));
 		roomManager.setCustomers(supportedTypes);
 		return customers;
 	}
 
 	@Override
-	public Integer[] getCustomers() {
+	public Double[] getCustomers() {
 		
-		return roomManager.getCustomers().toArray(new Integer[0]);
+		return roomManager.getCustomers().toArray(new Double[0]);
 	}
 
 	@Override
-	public Integer[] addCustomers(Integer[] customers) {
-		List<Integer> allCustomers =  roomManager.addCustomers(Arrays.asList(customers));
-		return allCustomers.toArray(new Integer[0]);
+	public Double[] addCustomers(Double[] customers) {
+		List<Double> allCustomers =  roomManager.addCustomers(Arrays.asList(customers));
+		return allCustomers.toArray(new Double[0]);
 	}
 }
