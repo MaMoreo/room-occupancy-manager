@@ -5,11 +5,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.springframework.stereotype.Component;
-
 import lombok.Data;
 
-@Component
 @Data
 public class RoomManager {
 
