@@ -11,7 +11,7 @@ import com.smarthost.roommanager.model.RoomManager;
 public class RoomManagerBusinessImpl implements RoomManagerBusiness {
 
 		
-	private  RoomManager roomManager = new RoomManager();
+	private final RoomManager roomManager = new RoomManager();
 	
 	
 	@Override
