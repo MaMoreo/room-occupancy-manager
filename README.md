@@ -20,7 +20,7 @@ Room Ocuppancy Manager uses a number of open source projects:
    - Spring Boot
   - RESTful API
   - In-Mem solution (No-DB)
-  - JUnit 4 (Tests)
+  - JUnit 5 (Tests)
   - Maven (build tool)
   - Swagger (Automated API Documentation)
   - CircleCI (Continous Integration)
