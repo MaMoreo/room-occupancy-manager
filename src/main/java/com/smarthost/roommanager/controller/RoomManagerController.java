@@ -2,11 +2,11 @@ package com.smarthost.roommanager.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.smarthost.roommanager.model.RoomManager;
@@ -24,10 +24,10 @@ public class RoomManagerController {
 	}
 
 
-	@GetMapping("/occupancy/{premiumRooms}/{economyRooms}")
+	@GetMapping("/occupancy")
 	public RoomManager.Occupancy getAccomodation(   //
-			@PathVariable("premiumRooms") String premiumRooms,  //
-			@PathVariable("economyRooms") String economyRooms) {
+			@RequestParam("premiumRooms") String premiumRooms,  //
+			@RequestParam("economyRooms") String economyRooms) {
 
 		return roomManagerService.getOccupancy(premiumRooms, economyRooms);
 	}
