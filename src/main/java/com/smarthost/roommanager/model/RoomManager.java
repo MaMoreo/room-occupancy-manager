@@ -21,14 +21,14 @@ public class RoomManager {
 	private List<Double> bookedPremium;
 	private List<Double> bookedEconomy;
 
-	public RoomManager() {
-		super();
-		customers = new ArrayList<>();
-
-	}
-
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
 
+		occupancyCalculator(premiumRooms, economyRooms);
+		return fillOccupancyData();
+	}
+
+	private void occupancyCalculator(int premiumRooms, int economyRooms) {
+		
 		this.premiumRooms = premiumRooms;
 		this.economyRooms = economyRooms;
 
@@ -42,23 +42,24 @@ public class RoomManager {
 		int counter = 0;
 		for (Double customer : allCustomers) {
 
-			if ( !bookPremium(customer) && !bookEconomy(customer, counter)) {
-					break;
+			if (!bookPremium(customer) && !bookEconomy(customer, counter)) {
+				break;
 			}
 			counter++;
 		}
-
-		return new Occupancy(bookedPremium.size(), //
-				bookedEconomy.size(),  //
-				bookedPremium.stream() //
-					.mapToDouble(Double::valueOf)//
-					.sum(),
-				bookedEconomy.stream() //
-					.mapToDouble(Double::valueOf)//
-					.sum());
-
 	}
 
+	private Occupancy fillOccupancyData() {
+		return new Occupancy(bookedPremium.size(), //
+				bookedEconomy.size(), //
+				bookedPremium.stream() //
+						.mapToDouble(Double::valueOf)//
+						.sum(),
+				bookedEconomy.stream() //
+						.mapToDouble(Double::valueOf)//
+						.sum());
+	}
+	
 	private boolean bookPremium(double customer) {
 		if (customer >= 100) {
 			if (bookedPremium.size() < premiumRooms) {
@@ -80,13 +81,20 @@ public class RoomManager {
 			bookedEconomy.add(customer);
 			return true;
 		}
-
 		return false;
 	}
 
 	public List<Double> addCustomers(List<Double> customersToAdd) {
 
 		this.customers.addAll(customersToAdd);
+		return customers;
+	}
+
+	public List<Double> getCustomers() {
+		if (customers == null) {
+			customers = new ArrayList<>();
+		}
+
 		return customers;
 	}
 }
