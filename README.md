@@ -24,6 +24,7 @@ Room Ocuppancy Manager uses a number of open source projects:
   - Maven (build tool)
   - Swagger (Automated API Documentation)
   - CircleCI (Continous Integration)
+  - Docker
 
 
 ### Run the Tests
@@ -33,12 +34,32 @@ Tests can be run with Maven from a console
 ```sh
 $ mvn clean test
 ```
-## Run The application
+## Run The application from a Console
 To launch the project simply run the following command in a console.
 
 ```sh
 $ mvn spring-boot:run
 ```
+
+## Run the application with Docker
+Create the jar with Maven
+```sh
+$ ./mvnw package
+```
+Build the image with Docker
+
+```sh
+$ docker build -t room-manager .
+```
+Create and run the container mapping the port 
+```sh
+$ docker run -p 8080:8080 room-manager
+```
+To stop the application
+```sh
+$ docker stop [CONTAINER_ID]
+```
+
 
 ## RESTfull API
 Once the application is running point your browser to the following URL to access
@@ -50,7 +71,6 @@ From there the Room-Manager-Controller is available.
 ## Future Work:
 * Unit Test the Controller using WebTestClient
 * Add Integration Tests
-* Dockerize the App
 * Validation of the input: **We rely on valid input from the user**.
 
 
@@ -67,13 +87,10 @@ What was good:
 - Clean project structure
 
 What was not so good:
-- Long solution time (~10 hours)
-- A little bit messy git branch management.
-- Git commits messages not imperative
+- A little bit messy git branch management. 
 - Did not use java 11 features
 - Redundant object creations.
 - Rest API design: /occupancy/{premiumRooms}/{economyRooms}
-- Used integer for money
 - Inconsistent code style
 - Makes model @Component and returns inner class as a result. 
 - Business logic implementation: using `@Component` and `@Data` annotation at the same time in the `models` package
