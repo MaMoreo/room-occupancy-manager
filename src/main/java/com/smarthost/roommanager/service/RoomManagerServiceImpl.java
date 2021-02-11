@@ -6,8 +6,8 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import com.smarthost.roommanager.model.Occupancy;
 import com.smarthost.roommanager.model.RoomManager;
-import com.smarthost.roommanager.model.RoomManager.Occupancy;
 
 @Service
 public class RoomManagerServiceImpl implements RoomManagerService{

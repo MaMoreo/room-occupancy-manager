@@ -7,9 +7,7 @@ import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Component;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Component
 @Data
@@ -27,17 +25,6 @@ public class RoomManager {
 		super();
 		customers = new ArrayList<>();
 
-	}
-
-	@Data
-	@AllArgsConstructor
-	@NoArgsConstructor
-	public class Occupancy {
-
-		private int usagePremium;
-		private int usageEconomy;
-		private double pricePremium;
-		private double priceEconomy;
 	}
 
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {

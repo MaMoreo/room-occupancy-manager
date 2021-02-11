@@ -8,8 +8,6 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.smarthost.roommanager.model.RoomManager.Occupancy;
-
 class RoomManagerTest {
 
 	private RoomManager manager;

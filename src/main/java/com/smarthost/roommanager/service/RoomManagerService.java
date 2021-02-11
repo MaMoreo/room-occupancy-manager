@@ -1,6 +1,6 @@
 package com.smarthost.roommanager.service;
 
-import com.smarthost.roommanager.model.RoomManager.Occupancy;
+import com.smarthost.roommanager.model.Occupancy;
 
 public interface RoomManagerService {
 

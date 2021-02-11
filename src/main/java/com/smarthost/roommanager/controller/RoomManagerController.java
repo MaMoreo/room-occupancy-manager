@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.smarthost.roommanager.model.RoomManager;
+import com.smarthost.roommanager.model.Occupancy;
 import com.smarthost.roommanager.service.RoomManagerService;
 
 @RestController
@@ -25,7 +25,7 @@ public class RoomManagerController {
 
 
 	@GetMapping("/occupancy")
-	public RoomManager.Occupancy getAccomodation(   //
+	public Occupancy getAccomodation(   //
 			@RequestParam("premiumRooms") String premiumRooms,  //
 			@RequestParam("economyRooms") String economyRooms) {
 
