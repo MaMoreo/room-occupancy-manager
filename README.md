@@ -1,8 +1,8 @@
 # RoomOccupancyManager
 
-![GitHub](https://img.shields.io/github/last-commit/MaMoreo/room-occupancy-manager)
 ## Circle CI Status: 
-[![CircleCI](https://circleci.com/gh/MaMoreo/room-occupancy-manager.svg?style=svg)](https://circleci.com/gh/MaMoreo/room-occupancy-manager)
+[![CircleCI](https://circleci.com/gh/MaMoreo/room-occupancy-manager.svg?style=svg)](https://circleci.com/gh/MaMoreo/room-occupancy-manager) 
+![GitHub](https://img.shields.io/github/last-commit/MaMoreo/room-occupancy-manager)
 
 A room occupancy optimization tool for hotels.
 
