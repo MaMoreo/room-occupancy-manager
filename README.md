@@ -1,6 +1,6 @@
 # RoomOccupancyManager
 
-
+![GitHub](https://img.shields.io/github/last-commit/MaMoreo/room-occupancy-manager)
 ## Circle CI Status: 
 [![CircleCI](https://circleci.com/gh/MaMoreo/room-occupancy-manager.svg?style=svg)](https://circleci.com/gh/MaMoreo/room-occupancy-manager)
 
