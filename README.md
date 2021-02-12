@@ -87,12 +87,9 @@ What was good:
 - Clean project structure
 
 What was not so good:
-- A little bit messy git branch management. 
 - Did not use java 11 features
 - Redundant object creations.
 - Inconsistent code style
-- Makes model @Component and returns inner class as a result. 
-- Business logic implementation: using `@Component` and `@Data` annotation at the same time in the `models` package
 
 ## Commit Message Format
 Check the wiki page for Git commits messages format.
