@@ -7,18 +7,13 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.smarthost.roommanager.model.Occupancy;
+import com.smarthost.roommanager.model.RoomManager;
 
 @Service
 public class RoomManagerServiceImpl implements RoomManagerService{
 
-	private final RoomManagerBusiness roomManager;
+	private final RoomManager roomManager = new RoomManager();
 	
-	
-	public RoomManagerServiceImpl(RoomManagerBusiness roomManager) {
-		super();
-		this.roomManager = roomManager;
-	}
-
 	@Override
 	public Occupancy getOccupancy(String premiumRooms, String economyRooms) {
 		return roomManager.calculateOccupancy(Integer.valueOf(premiumRooms), Integer.valueOf(economyRooms));
