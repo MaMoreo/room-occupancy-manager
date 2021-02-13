@@ -1,8 +1,8 @@
 # RoomOccupancyManager
 
-
 ## Circle CI Status: 
-[![CircleCI](https://circleci.com/gh/MaMoreo/room-occupancy-manager.svg?style=svg)](https://circleci.com/gh/MaMoreo/room-occupancy-manager)
+[![CircleCI](https://circleci.com/gh/MaMoreo/room-occupancy-manager.svg?style=svg)](https://circleci.com/gh/MaMoreo/room-occupancy-manager) 
+![GitHub](https://img.shields.io/github/last-commit/MaMoreo/room-occupancy-manager)
 
 A room occupancy optimization tool for hotels.
 
@@ -87,12 +87,9 @@ What was good:
 - Clean project structure
 
 What was not so good:
-- A little bit messy git branch management. 
 - Did not use java 11 features
 - Redundant object creations.
 - Inconsistent code style
-- Makes model @Component and returns inner class as a result. 
-- Business logic implementation: using `@Component` and `@Data` annotation at the same time in the `models` package
 
 ## Commit Message Format
 Check the wiki page for Git commits messages format.
