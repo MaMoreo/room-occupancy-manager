@@ -4,7 +4,7 @@ import com.smarthost.roommanager.model.Occupancy;
 
 public interface RoomManagerService {
 
-	Occupancy getOccupancy(String premiumRooms, String economyRooms);
+	Occupancy getOccupancy(String premiumRooms, String economyRooms, int version);
 
 	Double[] setCustomers(Double[] customers);
 

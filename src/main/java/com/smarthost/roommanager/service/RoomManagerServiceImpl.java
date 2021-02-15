@@ -10,13 +10,16 @@ import com.smarthost.roommanager.model.Occupancy;
 import com.smarthost.roommanager.model.RoomManager;
 
 @Service
-public class RoomManagerServiceImpl implements RoomManagerService{
+public class RoomManagerServiceImpl implements RoomManagerService {
 
 	private final RoomManager roomManager = new RoomManager();
-	
+
 	@Override
-	public Occupancy getOccupancy(String premiumRooms, String economyRooms) {
-		return roomManager.calculateOccupancy(Integer.valueOf(premiumRooms), Integer.valueOf(economyRooms));
+	public Occupancy getOccupancy(String premiumRooms, String economyRooms, int version) {
+		if (version == 1)
+			return roomManager.calculateOccupancy(Integer.valueOf(premiumRooms), Integer.valueOf(economyRooms));
+		else
+			return roomManager.calculateOccupancyV2(Integer.valueOf(premiumRooms), Integer.valueOf(economyRooms));
 	}
 
 	@Override
@@ -32,7 +35,7 @@ public class RoomManagerServiceImpl implements RoomManagerService{
 
 	@Override
 	public Double[] addCustomers(Double[] customers) {
-		List<Double> allCustomers =  roomManager.addCustomers(Arrays.asList(customers));
+		List<Double> allCustomers = roomManager.addCustomers(Arrays.asList(customers));
 		return allCustomers.toArray(new Double[0]);
 	}
 }

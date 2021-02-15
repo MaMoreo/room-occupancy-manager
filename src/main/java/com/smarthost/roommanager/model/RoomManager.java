@@ -26,6 +26,10 @@ public class RoomManager {
 	 * @return The Occupancy statistics
 	 */
 	public Occupancy calculateOccupancy(int premiumRooms, int economyRooms) {
+		
+		if (customers == null || customers.isEmpty()) {
+			return new Occupancy(0,0, 0, 0);
+		}
 
 		occupancyCalculator(premiumRooms, economyRooms);
 		return fillOccupancyData();
@@ -44,6 +48,10 @@ public class RoomManager {
 
 		this.premiumRooms = premiumRooms;
 		this.economyRooms = economyRooms;
+		
+		if (customers == null || customers.isEmpty()) {
+			return new Occupancy(0,0, 0, 0);
+		}
 
 		List<Double> bookedPremiumCustomers = customers.stream()//
 				.filter(p -> p >= 100) //

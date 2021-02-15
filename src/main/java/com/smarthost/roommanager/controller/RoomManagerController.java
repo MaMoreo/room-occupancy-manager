@@ -24,29 +24,37 @@ public class RoomManagerController {
 	}
 
 
-	@GetMapping("/occupancy")
+	@GetMapping("v1/occupancy")
 	public Occupancy getAccomodation(   //
 			@RequestParam("premiumRooms") String premiumRooms,  //
 			@RequestParam("economyRooms") String economyRooms) {
 
-		return roomManagerService.getOccupancy(premiumRooms, economyRooms);
+		return roomManagerService.getOccupancy(premiumRooms, economyRooms, 1);
+	}
+	
+	@GetMapping("v2/occupancy")
+	public Occupancy getAccomodationV2(   //
+			@RequestParam("premiumRooms") String premiumRooms,  //
+			@RequestParam("economyRooms") String economyRooms) {
+
+		return roomManagerService.getOccupancy(premiumRooms, economyRooms, 2);
 	}
 
-	@PostMapping("/customers")
+	@PostMapping("v1/customers")
 	public ResponseEntity<Double[]> createCustomers(@RequestBody Double[] customers) {
 
 		return ResponseEntity //
 				.ok(roomManagerService.setCustomers(customers));
 	}
 
-	@GetMapping("/customers")
+	@GetMapping("v1/customers")
 	public ResponseEntity<Double[]> getCustomers() {
 
 		return ResponseEntity //
 				.ok(roomManagerService.getCustomers());
 	}
 
-	@PutMapping("/customers")
+	@PutMapping("v1/customers")
 	public ResponseEntity<Double[]> addCustomers(@RequestBody Double[] customers) {
 
 		return ResponseEntity //
