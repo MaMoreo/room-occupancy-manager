@@ -87,7 +87,8 @@ public class RoomManager {
 			int overbookedEconomyUsers = allEconomyCustomers - economyRooms;
 			int min = restOfPremiumRooms < overbookedEconomyUsers ? restOfPremiumRooms : overbookedEconomyUsers;
 
-			return customers.stream().filter(p -> p < 100) //
+			return customers.stream()//
+					.filter(p -> p < 100) //
 					.sorted(Comparator.reverseOrder())//
 					.limit(min)//
 					.collect(Collectors.toList());
