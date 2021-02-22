@@ -1,6 +1,9 @@
 package com.smarthost.roommanager.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.smarthost.roommanager.model.Customer;
 import com.smarthost.roommanager.model.Occupancy;
 import com.smarthost.roommanager.service.RoomManagerService;
 
@@ -45,6 +49,23 @@ public class RoomManagerController {
 
 		return ResponseEntity //
 				.ok(roomManagerService.setCustomers(customers));
+	}
+	
+	@PostMapping("v2/customers")
+	public ResponseEntity<Customer> createCustomersV2(@Valid @RequestBody Customer customers, BindingResult bindingResult) {
+
+		if(bindingResult.hasErrors()){
+
+            bindingResult.getAllErrors().forEach(objectError -> {
+                //log.debug(objectError.toString());
+            });
+
+            //return ResponseEntity.badRequest();
+         	return null;
+        }
+		
+		return ResponseEntity 
+				.ok(customers );  //roomManagerService.setCustomers(customers));
 	}
 
 	@GetMapping("v1/customers")
