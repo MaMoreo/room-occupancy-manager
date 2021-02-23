@@ -87,7 +87,6 @@ What was good:
 - Clean project structure
 
 What was not so good:
-- Did not use java 11 features
 - Redundant object creations.
 - Inconsistent code style
 
