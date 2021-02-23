@@ -50,14 +50,14 @@ public class RoomManagerController {
 	
 	@PostMapping("v2/customers")
 	public ResponseEntity<Customer> createCustomersV2(@RequestBody Customer customers) {
-
 		return ResponseEntity 
+				// TODO: Add this functionality to Model
 				.ok(customers );  //roomManagerService.setCustomers(customers));
 	}
 
 	@GetMapping("v1/customers")
 	public ResponseEntity<Double[]> getCustomers() {
-
+		
 		return ResponseEntity //
 				.ok(roomManagerService.getCustomers());
 	}

@@ -1,4 +1,4 @@
-package com.smarthost.roommanager;
+package com.smarthost.roommanager.exception;
 
 import javax.money.UnknownCurrencyException;
 
