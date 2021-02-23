@@ -22,8 +22,11 @@ public class CustomerSerializer extends StdSerializer<Customer> {
     public void serialize(Customer value, JsonGenerator jgen,
         SerializerProvider provider) throws IOException {
         jgen.writeStartObject();
+        jgen.writeFieldName("amount");
+        jgen.writeStartObject();
         jgen.writeStringField("currency", value.getAmount().getCurrency().getCurrencyCode());
         jgen.writeNumberField("number", value.getAmount().getNumber().doubleValue());
+        jgen.writeEndObject();
         jgen.writeEndObject();
     }
 }
