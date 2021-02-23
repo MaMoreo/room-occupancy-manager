@@ -1,9 +1,6 @@
 package com.smarthost.roommanager.controller;
 
-import javax.validation.Valid;
-
 import org.springframework.http.ResponseEntity;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -52,18 +49,8 @@ public class RoomManagerController {
 	}
 	
 	@PostMapping("v2/customers")
-	public ResponseEntity<Customer> createCustomersV2(@Valid @RequestBody Customer customers, BindingResult bindingResult) {
+	public ResponseEntity<Customer> createCustomersV2(@RequestBody Customer customers) {
 
-		if(bindingResult.hasErrors()){
-
-            bindingResult.getAllErrors().forEach(objectError -> {
-                //log.debug(objectError.toString());
-            });
-
-            //return ResponseEntity.badRequest();
-         	return null;
-        }
-		
 		return ResponseEntity 
 				.ok(customers );  //roomManagerService.setCustomers(customers));
 	}
