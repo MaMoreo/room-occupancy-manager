@@ -42,24 +42,25 @@ $ mvn spring-boot:run
 ```
 
 ## Run the application with Docker
-Create the jar with Maven
-```sh
-$ ./mvnw package
-```
+Docker will build the .jar with Maven and run the application
+
 Build the image with Docker
 
 ```sh
 $ docker build -t room-manager .
 ```
-Create and run the container mapping the port 
+Create and run the container in background mapping the port 
 ```sh
-$ docker run -p 8080:8080 room-manager
+$ docker run -d -p 8080:8080 room-manager
 ```
 To stop the application
 ```sh
 $ docker stop [CONTAINER_ID]
 ```
-
+To enter in a running container
+```sh
+$ docker exec -it [CONTAINER_NAMNE] sh
+```
 
 ## RESTfull API
 Once the application is running point your browser to the following URL to access
