@@ -1,8 +1,24 @@
-FROM adoptopenjdk/openjdk11:latest
-ARG JAR_FILE=target/*.jar
+#
+# Build stage
+#
+FROM maven:3.6.3-jdk-11-slim AS maven_build
 
-# copy and rename from the local machine to the container
-COPY ${JAR_FILE} app.jar
+WORKDIR 'usr/src/app'
 
-# The command the Docker image is going to run: command, Param1, Param2
-ENTRYPOINT ["java","-jar","/app.jar"]
+COPY . ./
+
+RUN mvn clean package
+
+#
+# Package stage
+#
+FROM openjdk:11-jre-slim
+
+ARG JAR_NAME="room-occupancy"
+
+WORKDIR '/usr/src/app'
+
+# EXPOSE ${HTTP_PORT}
+
+COPY --from=maven_build /usr/src/app/target/${JAR_NAME}.jar ./app.jar
+CMD ["java","-jar", "./app.jar"]
