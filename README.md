@@ -59,7 +59,7 @@ $ docker stop [CONTAINER_ID]
 ```
 To enter in a running container
 ```sh
-$ docker exec -it [CONTAINER_NAMNE] sh
+$ docker exec -it [CONTAINER_NAME] sh
 ```
 
 ## RESTfull API
