@@ -12,7 +12,11 @@ import com.smarthost.roommanager.model.RoomManager;
 @Service
 public class RoomManagerServiceImpl implements RoomManagerService {
 
-	private final RoomManager roomManager = new RoomManager();
+	private final RoomManager roomManager;
+	
+	public RoomManagerServiceImpl(RoomManager roomManager) {
+		this.roomManager = roomManager;
+	}
 
 	@Override
 	public Occupancy getOccupancy(String premiumRooms, String economyRooms, int version) {
