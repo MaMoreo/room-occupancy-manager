@@ -31,11 +31,22 @@ public class RoomManager {
 			return new Occupancy(0,0, 0, 0);
 		}
 
+		customers = removeInvalidPrices();
+		
+		
 		occupancyCalculator(premiumRooms, economyRooms);
 		return fillOccupancyData();
 	}
 
 	
+	private List<Double> removeInvalidPrices() {
+		return customers
+				.stream()
+				.filter(c -> c > 0)
+				.collect(Collectors.toList());
+	}
+
+
 	/**
 	 * Version 2: Calculate Occupancy
 	 * 
@@ -167,7 +178,7 @@ public class RoomManager {
 			return true;
 		}
 
-		if (bookedEconomy.size() < economyRooms) {
+		if (bookedEconomy.size() < economyRooms) {  
 			bookedEconomy.add(customer);
 			return true;
 		}

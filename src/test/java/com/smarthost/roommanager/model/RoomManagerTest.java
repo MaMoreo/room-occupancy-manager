@@ -246,5 +246,50 @@ class RoomManagerTest {
 		assertEquals(245, occupancy.getPricePremium());
 		assertEquals(30, occupancy.getPriceEconomy());
 	}
+	
+	@Test
+	void calculateInvalidPricesNoEconomy() {
+	   customers = Arrays.asList(new Double[] { -1.0, 220.0, 100.0});
+
+		int premium = 2;
+		int economy = 2;
+		manager.setCustomers(customers);
+
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(2, occupancy.getUsagePremium());
+		assertEquals(0, occupancy.getUsageEconomy());
+		assertEquals(320, occupancy.getPricePremium());
+		assertEquals(0, occupancy.getPriceEconomy());
+	}
+	
+	@Test
+	void calculateInvalidPricesNoPremium() {
+	   customers = Arrays.asList(new Double[] { -1.0, 22.0, 10.0});
+
+		int premium = 2;
+		int economy = 2;
+		manager.setCustomers(customers);
+
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(0, occupancy.getUsagePremium());
+		assertEquals(2, occupancy.getUsageEconomy());
+		assertEquals(0, occupancy.getPricePremium());
+		assertEquals(32, occupancy.getPriceEconomy());
+	}
+	
+	@Test
+	void calculateRepeatedPrices() {
+	   customers = Arrays.asList(new Double[] { 22.0, 22.0, 100.0, 100.0 });
+
+		int premium = 2;
+		int economy = 2;
+		manager.setCustomers(customers);
+
+		Occupancy occupancy = manager.calculateOccupancy(premium, economy);
+		assertEquals(2, occupancy.getUsagePremium());
+		assertEquals(2, occupancy.getUsageEconomy());
+		assertEquals(200, occupancy.getPricePremium());
+		assertEquals(44, occupancy.getPriceEconomy());
+	}
 
 }

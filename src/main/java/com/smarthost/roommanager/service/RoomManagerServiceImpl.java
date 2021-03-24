@@ -3,6 +3,7 @@ package com.smarthost.roommanager.service;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Service;
 
@@ -28,8 +29,14 @@ public class RoomManagerServiceImpl implements RoomManagerService {
 
 	@Override
 	public Double[] setCustomers(Double[] customers) {
-		roomManager.setCustomers(new ArrayList<>(Arrays.asList(customers)));
-		return customers;
+		List<Double> customersValidPrices = new ArrayList<>(Arrays.asList(customers))
+				.stream()
+				.filter(c -> c > 0)
+				.collect(Collectors.toList());
+		roomManager.setCustomers(customersValidPrices);
+		
+		Double[] intArray = new Double[customersValidPrices.size()];
+		return customersValidPrices.toArray(intArray);
 	}
 
 	@Override
@@ -39,7 +46,11 @@ public class RoomManagerServiceImpl implements RoomManagerService {
 
 	@Override
 	public Double[] addCustomers(Double[] customers) {
-		List<Double> allCustomers = roomManager.addCustomers(Arrays.asList(customers));
+		List<Double> customersValidPrices = Arrays.asList(customers)
+				.stream()
+				.filter(c -> c > 0)
+				.collect(Collectors.toList());
+		List<Double> allCustomers = roomManager.addCustomers(customersValidPrices);
 		return allCustomers.toArray(new Double[0]);
 	}
 }
